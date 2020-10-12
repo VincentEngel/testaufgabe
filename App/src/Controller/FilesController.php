@@ -20,16 +20,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
-class DateiController extends AbstractController
+class FilesController extends AbstractController
 {
     public function index(): Response
     {
-        return $this->render("dateien/index.html.twig");
+        return $this->render("files/index.html.twig");
     }
 
     public function upload(Request $request): Response
     {
-        return $this->render("dateien/upload.html.twig", [
+        return $this->render("files/upload.html.twig", [
             "msg" => $request->query->get("msg"),
             'uploadFileForm' => $this->createForm(
                 FileUploadFormType::class,
@@ -80,7 +80,7 @@ class DateiController extends AbstractController
                 'deleteUrl'=> $this->generateUrl("files_delete", ["file_id" => $userFile->getId()]),
             ];
         }
-        return $this->render("dateien/view.html.twig", [
+        return $this->render("files/view.html.twig", [
             'files' => $filesInfo,
             'msg' => $request->query->get('msg'),
         ]);
@@ -153,7 +153,7 @@ class DateiController extends AbstractController
             'owner' => $this->getUser()->getId(),
         ]);
 
-        return $this->render("dateien/detail.html.twig", [
+        return $this->render("files/detail.html.twig", [
             'name' => FileInfo::getFullFileName($userFile),
             'fileSize' => FileInfo::getFormattedFileSize($userFile->getFileSize()),
             'msg' => $request->query->get('msg'),
