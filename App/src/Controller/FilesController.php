@@ -14,7 +14,6 @@ use App\Service\FileRenamer;
 use App\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -48,7 +47,7 @@ class FilesController extends AbstractController
         $form->handleRequest($request);
 
         if (!$form->isValid()) {
-            return new RedirectResponse($this->generateUrl("files_upload", ["msg" => 'Fehler bei der Eingabe.']));
+            return new RedirectResponse($this->generateUrl("files_upload", ["msg" => 'Uploading your file failed.']));
         }
 
         $fileUploader = new FileUploader(
@@ -124,7 +123,7 @@ class FilesController extends AbstractController
 
         if (!$form->isValid()) {
             return new RedirectResponse($this->generateUrl("files_detail", [
-                "msg" => 'Die Eingabe war fehlerhaft.',
+                "msg" => 'Renaming your file failed.',
                 'file_id' => $request->query->get('file_id'),
             ]));
         }

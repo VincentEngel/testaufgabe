@@ -2,15 +2,16 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Real-Testaufgabe</title>
+    <title>Real-Task</title>
     {% block stylesheets %}{% endblock %}
 </head>
 <body>
 {% if app.user %}
-    <h1>Willkommen {{ app.user.username }}</h1>
-    <a href="/files">Dateien</a>
+    <h1>Welcome {{ app.user.username }}</h1>
+    <a href="{{ path('files') }}">FilesMenu</a>
+    <a href="{{ path('app_logout') }}">Logout</a>
 {% else %}
-    <h1>Willkommen, bitte <a href="/login">HIER</a> einloggen.</h1>
+    <h1>Welcome, click <a href="{{ path('app_login') }}">HERE</a> to login.</h1>
 {% endif %}
 {% block body %}{% endblock %}
 {% block javascripts %}{% endblock %}

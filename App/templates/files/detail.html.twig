@@ -2,25 +2,25 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Datei Details{% endblock %}</title>
+    <title>{% block title %}File details{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
 </head>
 <body>
 {% if msg is defined %}
     <p>{{ msg }}</p>
 {% endif %}
-<div>Dateiname: {{ name }}</div>
-<div>Dateigröße: {{ fileSize }}</div>
+<div>Filename: {{ name }}</div>
+<div>Filesize: {{ fileSize }}</div>
 <div style="margin: 4em;">
     {{ form_start(renameFileForm) }}
     {{ form_row(renameFileForm.name) }}
-    <button type="submit" class="btn" style="margin-top: 2em;">Umbennen</button>
+    <button type="submit" class="btn" style="margin-top: 2em;">Rename</button>
     {{ form_end(renameFileForm) }}
 </div>
 {% block body %}{% endblock %}
 {% block javascripts %}{% endblock %}
 <div>
-    <a href="/files/view">Zurück zu Dateien</a>
+    <a href="{{ path('files_view') }}">FilesMenu</a>
 </div>
 </body>
 </html>

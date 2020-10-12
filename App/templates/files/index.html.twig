@@ -2,12 +2,13 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Dateien{% endblock %}</title>
+    <title>{% block title %}Files{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
 </head>
 <body>
-<a href="/files/upload">Datei hochladen</a>
-<a href="files/view">Hochgeladene Dateien</a>
+<a href="{{ path('files_upload') }}">File Upload</a>
+<a href="{{ path('files_view') }}">Your Files</a>
+<a href="{{ path('app_logout') }}">Logout</a>
 {% block body %}{% endblock %}
 {% block javascripts %}{% endblock %}
 </body>

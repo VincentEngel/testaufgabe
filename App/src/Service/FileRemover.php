@@ -27,8 +27,8 @@ class FileRemover
             $this->entityManager->remove($userfile);
             $this->entityManager->flush();
         } catch (Exception $e) {
-            return 'Fehler beim Löschen der Datei';
+            return 'Deleting your file failed.';
         }
-        return 'Datei erfolgreich gelöscht';
+        return 'Deleting your file succeeded.';
     }
 }

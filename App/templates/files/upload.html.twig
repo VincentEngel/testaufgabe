@@ -2,24 +2,24 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Datei hochladen{% endblock %}</title>
+    <title>{% block title %}File upload{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
 </head>
 <body>
 {% if msg is defined %}
     <p>{{ msg }}</p>
 {% endif %}
-<h1>Datei hochladen</h1>
+<h1>File upload</h1>
 <div style="margin: 4em;">
     {{ form_start(uploadFileForm) }}
     {{ form_row(uploadFileForm.file) }}
-    <button type="submit" class="btn" style="margin-top: 2em;">Hochladen</button>
+    <button type="submit" class="btn" style="margin-top: 2em;">Upload</button>
     {{ form_end(uploadFileForm) }}
 </div>
 {% block body %}{% endblock %}
 {% block javascripts %}{% endblock %}
 <div>
-    <a href="/files">Zurück zu Dateien</a>
+    <a href="{{ path('files') }}">FilesMenu</a>
 </div>
 </body>
 </html>

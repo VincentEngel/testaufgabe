@@ -2,21 +2,21 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Deine Dateien{% endblock %}</title>
+    <title>{% block title %}Your Files{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
 </head>
 <body>
 {% if msg is defined %}
     <p>{{ msg }}</p>
 {% endif %}
-<h1>Deine Dateien</h1>
+<h1>Your Files</h1>
 {% for file in files %}
     <div>
-        <div>{{ file.name }} ({{ file.fileSize }}) <a href="{{ file.downloadUrl }}">Download</a> <a href="{{ file.renameUrl }}">Umbennen</a> <a href="{{ file.deleteUrl }}">Löschen</a></div>
+        <div>{{ file.name }} ({{ file.fileSize }}) <a href="{{ file.downloadUrl }}">Download</a> <a href="{{ file.renameUrl }}">Rename</a> <a href="{{ file.deleteUrl }}">Delete</a></div>
     </div>
 {% endfor %}
 {% block body %}{% endblock %}
 {% block javascripts %}{% endblock %}
-<a href="/files">Zurück zu Dateien</a>
+<a href="{{ path('files') }}">FilesMenu</a>
 </body>
 </html>

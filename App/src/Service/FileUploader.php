@@ -49,9 +49,9 @@ class FileUploader
         } catch (Exception $e) {
             $this->entityManager->remove($userFile);
             $this->entityManager->flush();;
-            return "Fehler beim Hochladen der Datei.";
+            return "Uploading your file failed.";
         }
 
-        return "Datei wurde erfolgreich hochgeladen";
+        return "Uploading your file succeeded.";
     }
 }

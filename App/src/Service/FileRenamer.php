@@ -27,6 +27,8 @@ class FileRenamer
         try {
             $safeFileName = (string) $this->slugger->slug($newName);
 
+            if ($safeFileName === $userfile->getName()) return 'Renaming your file failed.';
+
             $renamedUserFile = new Userfile();
             $renamedUserFile->setId($userfile->getId());
             $renamedUserFile->setName($safeFileName);
@@ -44,9 +46,9 @@ class FileRenamer
             $this->entityManager->flush();
 
         } catch (Exception $e) {
-            return 'Fehler beim Umbennen der Datei';
+            return 'Renaming your file failed.';
         }
 
-        return 'Datei erfolgreic umbenannt';
+        return 'Renaming your file succeeded.';
     }
 }
