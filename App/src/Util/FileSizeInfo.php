@@ -11,6 +11,6 @@ class FileSizeInfo
     public static $MegaByte = 'MB';
 
     public static $ByteMinSize = 0;
-    public static $KiloByteMinSizeInByte = 1024;
-    public static $MegaByteMinSizeInByte = 1048576;
+    public static $KiloByteMinSizeInByte = 1000;
+    public static $MegaByteMinSizeInByte = 1000000;
 }

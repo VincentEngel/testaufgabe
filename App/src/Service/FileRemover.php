@@ -8,6 +8,7 @@ namespace App\Service;
 use App\Entity\Userfile;
 use Symfony\Component\Filesystem\Filesystem;
 use Doctrine\Persistence\ObjectManager;
+use App\Util\FileInfo;
 
 class FileRemover
 {

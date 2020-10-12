@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace App\Service;
+namespace App\Util;
 
 
 use App\Entity\Userfile;
@@ -31,11 +31,15 @@ class FileInfo
      */
     public static function getFormattedFileSize(int $fileSize) : string
     {
-        switch ($fileSize) {
-            case $fileSize > FileSizeInfo::$MegaByteMinSizeInByte:
+        if ($fileSize < 0) return "0" . FileSizeInfo::$Byte;
+
+        // TODO: Input 999999 gets divided by 1000 and then round up to 1000KB, should be 1MB
+
+        switch (true) {
+            case $fileSize >= FileSizeInfo::$MegaByteMinSizeInByte:
                 $formattedFileSize = round($fileSize / FileSizeInfo::$MegaByteMinSizeInByte, 1) . FileSizeInfo::$MegaByte;
                 break;
-            case $fileSize > FileSizeInfo::$KiloByteMinSizeInByte:
+            case $fileSize >= FileSizeInfo::$KiloByteMinSizeInByte:
                 $formattedFileSize = round($fileSize / FileSizeInfo::$KiloByteMinSizeInByte, 1) . FileSizeInfo::$KiloByte;
                 break;
             default:

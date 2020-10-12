@@ -8,7 +8,7 @@ namespace App\Controller;
 use App\Entity\Userfile;
 use App\Form\FileRenameFormType;
 use App\Form\FileUploadFormType;
-use App\Service\FileInfo;
+use App\Util\FileInfo;
 use App\Service\FileRemover;
 use App\Service\FileRenamer;
 use App\Service\FileUploader;
