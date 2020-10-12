@@ -12,6 +12,7 @@ class FileInfo
 {
     public static function getFullFilePath(Userfile $userFile) : string
     {
+        // Could use only id, because for download the name is changed anyway
         return $userFile->getPath() . '/' . $userFile->getName() . "-" . $userFile->getId() . '.' . $userFile->getFiletype();
     }
 

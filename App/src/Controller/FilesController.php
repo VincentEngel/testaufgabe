@@ -50,6 +50,7 @@ class FilesController extends AbstractController
             return new RedirectResponse($this->generateUrl("files_upload", ["msg" => 'Uploading your file failed.']));
         }
 
+        // The less logic there is in the controller the easier it gets to change the framework
         $fileUploader = new FileUploader(
             $entityManager = $this->getDoctrine()->getManager(),
             $this->getParameter('file_path'),

@@ -16,15 +16,24 @@ class FileRenamer
     private $filesystem;
     private $entityManager;
 
+    // Better use a proxy for Filesystem, EntityManager and ObjectManager, so this logic gets fully independent from Symfony and doctrine
     public function __construct(Filesystem $filesystem, ObjectManager $entityManager, SluggerInterface $slugger) {
         $this->filesystem = $filesystem;
         $this->entityManager = $entityManager;
         $this->slugger = $slugger;
     }
 
+    /**
+     * renames the file and updates the userfile entry in the database
+     *
+     * @param Userfile $userfile
+     * @param string $newName
+     * @return string
+     */
     public function rename(Userfile $userfile, string $newName): string
     {
         try {
+            // use slugger because you should not trust user input
             $safeFileName = (string) $this->slugger->slug($newName);
 
             if ($safeFileName === $userfile->getName()) return 'Renaming your file failed.';
