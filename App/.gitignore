@@ -14,3 +14,7 @@
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+
+###> ignore uploaded files
+/private/upload/files/*
+###< ignore uploaded files
