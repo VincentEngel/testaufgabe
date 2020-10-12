@@ -1,27 +1,27 @@
 index:
     path: /
     controller: App\Controller\MainController::index
-dateien:
-    path: /dateien
+files:
+    path: /files
     controller: App\Controller\DateiController::index
-datei_upload:
-    path: /dateien/upload
+files_upload:
+    path: /files/upload
     controller: App\Controller\DateiController::upload
-datei_view:
-    path: /dateien/view
+files_view:
+    path: /files/view
     controller: App\Controller\DateiController::view
-datei_upload_new:
-    path: /dateien/new
+files_new:
+    path: /files/new
     controller: App\Controller\DateiController::new
-datei_download:
-    path: /dateien/download
+files_download:
+    path: /files/download
     controller: App\Controller\DateiController::download
-datei_delete:
-    path: /dateien/delete
+files_delete:
+    path: /files/delete
     controller: App\Controller\DateiController::delete
-datei_rename:
-    path: /dateien/rename
+files_rename:
+    path: /files/rename
     controller: App\Controller\DateiController::rename
-datei_detail:
-    path: /dateien/detail
+files_detail:
+    path: /files/detail
     controller: App\Controller\DateiController::detail

@@ -8,7 +8,7 @@
 <body>
 {% if app.user %}
     <h1>Willkommen {{ app.user.username }}</h1>
-    <a href="/dateien">Dateien</a>
+    <a href="/files">Dateien</a>
 {% else %}
     <h1>Willkommen, bitte <a href="/login">HIER</a> einloggen.</h1>
 {% endif %}

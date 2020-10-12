@@ -35,7 +35,7 @@ class DateiController extends AbstractController
                 FileUploadFormType::class,
                 null,
                 [
-                    'action' => $this->generateUrl("datei_upload_new")
+                    'action' => $this->generateUrl("files_new")
                 ]
             )->createView(),
         ]);
@@ -48,7 +48,7 @@ class DateiController extends AbstractController
         $form->handleRequest($request);
 
         if (!$form->isValid()) {
-            return new RedirectResponse($this->generateUrl("datei_upload", ["msg" => 'Fehler bei der Eingabe.']));
+            return new RedirectResponse($this->generateUrl("files_upload", ["msg" => 'Fehler bei der Eingabe.']));
         }
 
         $fileUploader = new FileUploader(
@@ -59,7 +59,7 @@ class DateiController extends AbstractController
 
         $msg = $fileUploader->upload($form->get('file')->getData(), $this->getUser());
 
-        return new RedirectResponse($this->generateUrl("datei_upload", ["msg" => $msg]));
+        return new RedirectResponse($this->generateUrl("files_upload", ["msg" => $msg]));
     }
 
     public function view(Request $request): Response
@@ -75,9 +75,9 @@ class DateiController extends AbstractController
             $filesInfo[] = [
                 'name' => FileInfo::getFullFileName($userFile),
                 'fileSize' => FileInfo::getFormattedFileSize($userFile->getFileSize()),
-                'downloadUrl' => $this->generateUrl("datei_download", ["file_id" => $userFile->getId()]),
-                'renameUrl' => $this->generateUrl("datei_detail", ["file_id" => $userFile->getId()]),
-                'deleteUrl'=> $this->generateUrl("datei_delete", ["file_id" => $userFile->getId()]),
+                'downloadUrl' => $this->generateUrl("files_download", ["file_id" => $userFile->getId()]),
+                'renameUrl' => $this->generateUrl("files_detail", ["file_id" => $userFile->getId()]),
+                'deleteUrl'=> $this->generateUrl("files_delete", ["file_id" => $userFile->getId()]),
             ];
         }
         return $this->render("dateien/view.html.twig", [
@@ -112,7 +112,7 @@ class DateiController extends AbstractController
 
         $msg = $fileRemover->delete($userFile);
 
-        return new RedirectResponse($this->generateUrl("datei_view", ["msg" => $msg]));
+        return new RedirectResponse($this->generateUrl("files_view", ["msg" => $msg]));
     }
 
     public function rename(Request $request, SluggerInterface $slugger): Response
@@ -123,7 +123,7 @@ class DateiController extends AbstractController
         $form->handleRequest($request);
 
         if (!$form->isValid()) {
-            return new RedirectResponse($this->generateUrl("datei_detail", [
+            return new RedirectResponse($this->generateUrl("files_detail", [
                 "msg" => 'Die Eingabe war fehlerhaft.',
                 'file_id' => $request->query->get('file_id'),
             ]));
@@ -139,7 +139,7 @@ class DateiController extends AbstractController
 
         $msg = $fileRenamer->rename($userFile, $renamedUserFile->getName());
 
-        return new RedirectResponse($this->generateUrl("datei_detail", [
+        return new RedirectResponse($this->generateUrl("files_detail", [
             "msg" => $msg,
             'file_id' => $userFile->getId(),
         ]));
@@ -161,7 +161,7 @@ class DateiController extends AbstractController
                 FileRenameFormType::class,
                 null,
                 [
-                    'action' => $this->generateUrl("datei_rename"),
+                    'action' => $this->generateUrl("files_rename"),
                     'data' => $userFile,
                 ]
             )->createView(),
