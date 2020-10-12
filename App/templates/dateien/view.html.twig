@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Deine Dateien{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+{% if msg is defined %}
+    <p>{{ msg }}</p>
+{% endif %}
+<h1>Deine Dateien</h1>
+{% for file in files %}
+    <div>
+        <div>{{ file.name }} ({{ file.fileSize }}) <a href="{{ file.downloadUrl }}">Download</a> <a href="{{ file.renameUrl }}">Umbennen</a> <a href="{{ file.deleteUrl }}">Löschen</a></div>
+    </div>
+{% endfor %}
+{% block body %}{% endblock %}
+{% block javascripts %}{% endblock %}
+<a href="/dateien">Zurück zu Dateien</a>
+</body>
+</html>

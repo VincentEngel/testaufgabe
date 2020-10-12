@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Datei Details{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+{% if msg is defined %}
+    <p>{{ msg }}</p>
+{% endif %}
+<div>Dateiname: {{ name }}</div>
+<div>Dateigröße: {{ fileSize }}</div>
+<div style="margin: 4em;">
+    {{ form_start(renameFileForm) }}
+    {{ form_row(renameFileForm.name) }}
+    <button type="submit" class="btn" style="margin-top: 2em;">Umbennen</button>
+    {{ form_end(renameFileForm) }}
+</div>
+{% block body %}{% endblock %}
+{% block javascripts %}{% endblock %}
+<div>
+    <a href="/dateien/view">Zurück zu Dateien</a>
+</div>
+</body>
+</html>

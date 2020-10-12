@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Dateien{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+<a href="/dateien/upload">Datei hochladen</a>
+<a href="dateien/view">Hochgeladene Dateien</a>
+{% block body %}{% endblock %}
+{% block javascripts %}{% endblock %}
+</body>
+</html>

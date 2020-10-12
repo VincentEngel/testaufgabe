@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Datei hochladen{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+{% if msg is defined %}
+    <p>{{ msg }}</p>
+{% endif %}
+<h1>Datei hochladen</h1>
+<div style="margin: 4em;">
+    {{ form_start(uploadFileForm) }}
+    {{ form_row(uploadFileForm.file) }}
+    <button type="submit" class="btn" style="margin-top: 2em;">Hochladen</button>
+    {{ form_end(uploadFileForm) }}
+</div>
+{% block body %}{% endblock %}
+{% block javascripts %}{% endblock %}
+<div>
+    <a href="/dateien">Zurück zu Dateien</a>
+</div>
+</body>
+</html>
