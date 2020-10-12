@@ -30,6 +30,7 @@ services:
       - "9000:9000"
     volumes:
       - ./App:/var/www/project
+      - ./App/config/php/uploads.ini:/usr/local/etc/php/conf.d/docker-php-ext-app.ini
     networks:
       - nginx-php74-mysql8-node
 

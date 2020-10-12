@@ -48,7 +48,7 @@ class DateiController extends AbstractController
         $form->handleRequest($request);
 
         if (!$form->isValid()) {
-            return new RedirectResponse($this->generateUrl("datei_upload", ["msg" => 'Die Eingabe war fehlerhaft.']));
+            return new RedirectResponse($this->generateUrl("datei_upload", ["msg" => 'Fehler bei der Eingabe.']));
         }
 
         $fileUploader = new FileUploader(
