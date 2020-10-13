@@ -20,10 +20,10 @@ class FileUploader
         $this->slugger = $slugger;
     }
 
-    public function saveFile(UploadedFile $file, Userfile $userfile, string $targetDirectory): bool {
+    public function saveFile(UploadedFile $file, Userfile $userfile): bool {
         try {
             $file->move(
-                $targetDirectory,
+                $userfile->getPath(),
                 FileInfo::getFullFilePath($userfile)
             );
             return true;
