@@ -32,6 +32,7 @@ class FileRenamer
      */
     public function rename(Userfile $userfile, string $newName): string
     {
+        // Could be improved to be more like FileUploader. Split the updating of $userfile and renaming of the file
         try {
             // use slugger because you should not trust user input
             $safeFileName = (string) $this->slugger->slug($newName);

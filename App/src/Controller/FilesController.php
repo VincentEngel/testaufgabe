@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace App\Controller;
 
 
+use App\Entity\User;
 use App\Entity\Userfile;
 use App\Form\FileRenameFormType;
 use App\Form\FileUploadFormType;
@@ -46,18 +47,32 @@ class FilesController extends AbstractController
         $form = $this->createForm(FileUploadFormType::class, $userFile);
         $form->handleRequest($request);
 
+        $msg = 'Uploading your file failed.';
+
         if (!$form->isValid()) {
-            return new RedirectResponse($this->generateUrl("files_upload", ["msg" => 'Uploading your file failed.']));
+            return new RedirectResponse($this->generateUrl("files_upload", ["msg" => $msg]));
+        }
+
+        $file = $form->get('file')->getData();
+        /** @var User $user */
+        $user = $this->getUser();
+        if (!$file || !$user) {
+            return new RedirectResponse($this->generateUrl("files_upload", ["msg" => $msg]));
         }
 
         // The less logic there is in the controller the easier it gets to change the framework
-        $fileUploader = new FileUploader(
-            $entityManager = $this->getDoctrine()->getManager(),
-            $this->getParameter('file_path'),
-            $slugger
-        );
+        $entityManager = $this->getDoctrine()->getManager();
+        $fileUploader = new FileUploader($slugger);
 
-        $msg = $fileUploader->upload($form->get('file')->getData(), $this->getUser());
+        $userFile = $fileUploader->createUserfile($file, $user, $this->getParameter('file_path'));
+        $entityManager->persist($userFile);
+        $entityManager->flush();
+
+        $fileSaved = $fileUploader->saveFile($file, $userFile, $this->getParameter('file_path'));
+
+        if ($fileSaved) {
+            $msg = 'Uploading your file succeeded.';
+        }
 
         return new RedirectResponse($this->generateUrl("files_upload", ["msg" => $msg]));
     }
